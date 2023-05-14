@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackthon</title>
+    
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/chartsStyle.css">
+
+    
+    <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+    
+
+
+    <script type="text/javascript" src="js/leerCSV.js"></script>
+    <script type="text/javascript" src="js/controlTabla.js"></script>
+    <script type="text/javascript" src="js/prediccion.js"></script>
+
+    <script type="text/javascript" src="js/charts.js"></script>
+
+
+</head>
+<body onload="downloadCsv()">
+    <img width="80px" class="absolute mx-5"
+         src="img/HP-Logo.png" alt="Logo con fondo transparente de HP">
+
+    <!-- <div class="">
+         <input type="file" name="file" id="file" onchange="readFile()">
+    </div> -->
+    <div class="">
+        <div class="mx-auto my-5 w-full max-w-sm p-1.5 bg-white border border-sky-600 rounded-lg shadow sm:p-3 md:p-4">
+
+            <div>
+                <label for="fecha" class="block mb-2 text-sm text-lg text-sky-600">Date</label>
+                <input type="date" name="fecha" id="fecha" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2">
+            </div>
+
+            <div>
+                <label for="ids_producto" class="block mb-2 text-sm font-medium text-lg text-sky-600">Select id product</label>
+                <select name="ids_producto" id="ids_producto" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2">
+                    <option value="" selected>Default</option>
+                </select>
+                <button onclick="insertarImagen()" class="mt-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 focus:outline-none">Send</button>
+            </div>
+
+
+        </div>
+    
+    </div>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mx-10">
+    <table id="resultados" class="w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-100 uppercase bg-sky-600">
+                <tr >
+                    <th scope="col" class="px-6 py-3">id</th>
+                    <th scope="col" class="px-6 py-3">date</th>
+                    <th scope="col" class="px-6 py-3">year_week</th>
+                    <th scope="col" class="px-6 py-3">product_number</th>
+                    <th scope="col" class="px-6 py-3">reporterhq_id</th>
+                    <th scope="col" class="px-6 py-3">prod_category</th>
+                    <th scope="col" class="px-6 py-3">specs</th>
+                    <th scope="col" class="px-6 py-3">display_size</th>
+                    <th scope="col" class="px-6 py-3">segment</th>
+                    <th scope="col" class="px-6 py-3">sales_units</th>
+                    <th scope="col" class="px-6 py-3">inventory_units</th>
+                </tr>
+                
+            </thead>
+        
+        <tbody id="cuerpo-resultados">
+
+        </tbody>
+    </table>
+    </div>
+    
+    <div id="paginador" class="mt-10 flex justify-center"></div>
+
+    
+    <div class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50" id="modal-container" style="display:none">
+        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg p-8">
+            <figure class="highcharts-figure">
+                <div id="container"></div>
+                
+            </figure>
+          <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" id="close-modal"
+          onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
+    
+    <div class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50" id="modal-container2" style="display:none">
+        <div class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg p-8">
+          <div id="meter-img"></div>  
+          <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" id="close-modal2"
+          onclick="cerrarModal2()">Cerrar</button>
+        </div>
+    </div>
+    
+</body>
+    <script>
+        function cerrarModal(){
+            document.getElementById("modal-container").style.display='none';
+        }
+        function cerrarModal2(){
+            document.getElementById("modal-container2").style.display='none';
+        }
+    </script>
+
+    <script>
+        const fechaInput = document.getElementById('fecha');
+        fechaInput.addEventListener('change', function() {
+        const fecha = this.value;
+        filtrarFecha(fecha);
+        });
+
+    </script>
+    
+
+</html>
+

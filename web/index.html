@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackthon</title>
+
+    <link rel="stylesheet" href="style/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script type="text/javascript" src="js/leerCSV.js"></script>
+    <script type="text/javascript" src="js/controlTabla.js"></script>
+    <script type="text/javascript" src="js/prediccion.js"></script>
+    
+
+</head>
+<body class="flex flex-col justifycenter items-center row">
+
+    <h1 class="text-sky-600 font-bold text-5xl m-20">Prediccion de ventas</h1>
+
+    <button id="boton-prediccion" onclick="empezarPrediccion()">
+        <img id="efecto-girar" class="w-40"
+         src="img/HP-Logo.png" alt="Logo con fondo transparente de HP">
+    </button>
+    
+
+    
+</body>
+<script>
+    const miImagen = document.getElementById("efecto-girar");
+
+    miImagen.addEventListener("click", () => {
+      miImagen.classList.add("rotando");
+    });</script>
+</html>
